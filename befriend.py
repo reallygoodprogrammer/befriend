@@ -154,11 +154,10 @@ def follow_recs(page, mfollows : int):
     wait_long()
     page.wait_for_load_state("networkidle")
 
+    profile = page.locator('button > div > div:has-text("Follow")')
     for i in range(0, mfollows):
-        profile = page.locator('div:not(:has-text("Suggested")):has-text("Followed by "):has(._acan:has-text("Follow"))')
-        profile.locator('._acan').nth(i).click()
+        profile.nth(i).click()
         wait_long()
-        reqd = page.locator(f'div:not(:has-text("Suggested")):has-text("Followed by "):has-text("{profile_name}"):has-text("Requested")')
             
     page.get_by_role("link", name="Home Home").click()
     wait_long()
